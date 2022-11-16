@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+    <h1>Promises</h1>
+</body>
+</html>
+
+<script>
+    // Promises
+    //resolve || pending  || rejected
+
+    // let p = new Promise((resolve, reject) =>{
+    //     //resolve("Resolve")
+    //     reject("Rejected")
+    // });
+
+    // p.then((res) => {
+    //     console.log(res)
+    // })
+
+    // p.catch((err) => {
+    //     console.log(err)
+    // })
+    // console.log(p);
+
+
+
+
+
+    // let delay = 100;
+    // let sleep = new Promise((resolve, reject) => {
+    //     if(delay == Number){
+    //         resolve("resolved")
+    //     }else{
+    //         reject("rejected")
+    //     }
+    // });
+
+    // sleep.then((res) => {
+    //     console.log(res)
+    // });
+
+    // sleep.catch((err) => {
+    //     console.log(err);
+    // });
+
+
+
+        function sleep(delay){
+            return new Promise((res,rej) => {
+                if(typeof(delay) !== "number"){
+                    rej("Reject")
+                }
+
+                setTimeout(() => {
+                    res("Resolved")
+                },delay)
+            })
+        }
+        
+        sleep(2000)
+        .then((res) => console.log(res))
+        .catch((rej) => console.log(rej))
+
+</script>

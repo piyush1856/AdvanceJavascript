@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    // constructor function
+    //nature --> function
+    //output - object
+
+    //let str = new String("masai")
+
+    //blueprint - CF
+
+    function Studn(n){
+        this.name = n
+    }
+    let s1 = new Studn("raj")
+    console.log(s1)
+
+    Studn.prototype.satName = function(){
+        console.log(this.name)
+        console.log(this)
+    }
+    s1.satName();
+
+
+    Studn.prototype.satName2 = () => {
+      //  console.log(this.name) //raj will not print here in arrow function
+      //it cannot refer to local object
+      console.log(this) // it will print whole window --> global object
+
+    }
+    s1.satName2();
+
+    //arrow function is basically a lightweigth function
+    
+</script>

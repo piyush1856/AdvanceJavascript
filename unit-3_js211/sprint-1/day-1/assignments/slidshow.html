@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        width: 600px;
+        height: 300px;
+    }
+</style>
+<body>
+    <h1>Slidshow</h1>
+    <button onclick="stop()">Stop</button>
+    <button onclick="start()">Start</button>
+
+    <button onclick="previous()">Previous</button>
+    <button onclick="nex()">Next</button>
+    <div id="slide" onclick="stop()"></div>
+   
+</body>
+</html>
+
+<script>
+    // setTimeout --> only once
+    // setInterval --> repeat till stoppped
+
+    let image = [
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGNhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1543252358-f20f9c57bafe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1541497613813-0780960684f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542995470-870e12e7e14f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542550371427-311e1b0427cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542559272-819e1934ac51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542438408-abb260104ef3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8OXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542500186-6edb30855637?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8OHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542442828-287217bfb87f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542395975-d6d3ddf91d6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542451313056-b7c8e626645f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542396601-dca920ea2807?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1542397284385-6010376c5337?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://media.istockphoto.com/photos/hd-wallpaper-for-mobile-phones-picture-id1257005098?b=1&k=20&m=1257005098&s=170667a&w=0&h=je8sgDZ9o62xavDKDHVSaAE4M6wug7Yt5vOaPI0VHFo=",
+        "https://media.istockphoto.com/photos/4k-blue-ice-picture-id1055097528?b=1&k=20&m=1055097528&s=170667a&w=0&h=-EK__RsA-VvlBsilHu41oCs9laIw6T0MKxjgUTRXro4=",
+        "https://media.istockphoto.com/photos/coriander-flowers-picture-id1357717942?b=1&k=20&m=1357717942&s=170667a&w=0&h=7sHt9yI-HuOkg3kOr0WB2jDN_PTN_QzJwVszgc7GnS0=",
+        "https://media.istockphoto.com/photos/soft-wave-background-picture-id1399745779?b=1&k=20&m=1399745779&s=170667a&w=0&h=7nw3my110HO7U_wdzVvBZe0BeMitgjJZkdd-R80PYOA=",
+        "https://media.istockphoto.com/photos/sliced-figure-picture-id1300035600?b=1&k=20&m=1300035600&s=170667a&w=0&h=_AOKQ_Xnt9CTSYPxao52DUuxtYi9JX8JKz3Hht31IPs=",
+        "https://media.istockphoto.com/photos/green-power-picture-id1221475943?b=1&k=20&m=1221475943&s=170667a&w=0&h=RqZkCwWQPp6fVNayq1IiJLxTYr7c2JqD2MfYx4qbY38=",
+        "https://media.istockphoto.com/photos/abstract-technology-blue-spotlight-backgrounds-loopable-elements-4k-picture-id1174989484?b=1&k=20&m=1174989484&s=170667a&w=0&h=xe1cvmwKDQGcfsxhiukjYP8PrDEyQ52at9-epfX56y4=",
+    ];
+
+    let index =0;
+    let address;
+    let slidShow = () => {
+        let con = document.getElementById("slide");
+
+        //0 to arr.length-1
+
+        address = setInterval(() => {
+            if(index === image.length){
+                index=0;
+            }
+            con.innerHTML = null
+            let img = document.createElement("img");
+            img.src = image[index];
+            con.append(img);
+            index++;
+        },1000);
+    }
+
+    let stop = () => {
+        clearInterval(address)  //what to clear
+    }
+
+    let start = () => {
+        clearInterval(address) 
+        slidShow()
+    }
+
+    let previous = () => {
+        clearInterval(address) ;
+
+        let con = document.getElementById("slide");
+        if(index === 0){
+            index = image.length-1;
+        }else{
+            index--;
+        }
+        con.innerHTML = null
+        let img = document.createElement("img");
+        img.src = image[index];
+
+        con.append(img);
+
+        
+    }
+
+    let nex = () => {
+        
+        clearInterval(address);
+
+
+        let con = document.getElementById("slide");
+
+        if(index == image.length-1){
+            index = 0;
+        }else{
+            index++;
+        }
+        con.innerHTML = null
+        let img = document.createElement("img");
+        img.src = image[index];
+        
+        con.append(img);
+        
+    }
+
+    slidShow();
+</script>

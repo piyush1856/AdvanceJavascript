@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #navbar{
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: end;
+      border: 1px solid blue;
+      margin-bottom: 25px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+</style>
+<body>
+    <div id="navbar">
+        <a href="./product.html">Add Product</a>
+        <a href="./store.html">E-Store</a>
+        <a href="./login.html" id="login">Login</a>
+        <a href="./signup.html" id="signup">signup</a>
+      </div>
+    <h1>Add Product</h1>
+
+    <input type="text" placeholder="Name" id="name">
+    <input type="text" placeholder="Price" id="price">
+    <input type="text" placeholder="Image URL" id="image">
+    <button id="submit" onclick="submit()">Submit</button>
+</body>
+</html>
+
+<script>
+    function Product (n,p,i){
+    this.name =n;
+    this.price =p;
+    this.image =i;
+};
+
+let submit = () => {
+    let name = document.getElementById("name").value;
+    let price = document.getElementById("price").value;
+    let image = document.getElementById("image").value;
+
+
+    let p = new Product(name,price,image)
+    console.log(p)
+
+    let data = JSON.parse(localStorage.getItem("data")) || [];
+
+    data.push(p);
+    localStorage.setItem("data",JSON.stringify(data));
+    document.getElementById("name").value=null;
+};
+</script>

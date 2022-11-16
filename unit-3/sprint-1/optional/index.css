@@ -1,0 +1,129 @@
+#Navbar {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    margin-bottom: 60px;
+    padding: 10px 30px;
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+#studentNo{
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+#studentNo > div {
+    
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    margin: 0px 10px;
+    padding: 0 10px;
+}
+#links {
+    width: 90px;
+    font-size: 20px;
+    border-radius: 15px;
+    background-color: rgb(156, 156, 156);
+    color: white;
+  
+    text-align: center;
+    padding: 10px;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+#links:hover {
+    cursor: pointer;
+    background-color: rgb(107, 107, 107);
+}
+  
+#container {
+    display: grid;
+    width: 80%;
+    /* border:1px solid red; */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 90px 90px;
+    margin: auto;
+}
+#container > div {
+    border-radius: 8px;
+    /* border:1px solid blue; */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+}
+.Students > img {
+    width: 100%;
+}
+  
+.btndiv {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.btndiv > button {
+    font-size: 15px;
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid transparent;
+    margin: 10px 0;
+}
+  
+.btndiv > button:hover {
+    cursor: pointer;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    font-weight: bold;
+}
+  
+form {
+    box-sizing: border-box;
+    width: 35%;
+    margin: auto;
+    /* border: 1px solid red; */
+    padding: 45px;
+    margin-top: 90px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 8px;
+}
+  
+  form > p:first-child {
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 23px;
+    margin: auto;
+    margin-bottom: 60px;
+    margin-top: 30px;
+}
+  form > p:last-child {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+
+  
+input[type="submit"] {
+    width: 100%;
+    border: 1px solid transparent;
+    margin-top: 45px;
+    padding: 10px;
+    border-radius: 10px;
+    color: grey;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 35px;
+}
+input[type="submit"]:hover {
+    background-color: darkgray;
+    color: white;
+}
+  
+form input {
+    width: 95%;
+    border: thin solid rgb(204, 204, 204);
+    border-radius: 4px;
+    padding: 8px;
+}
+  

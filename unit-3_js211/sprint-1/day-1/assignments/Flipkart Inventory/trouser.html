@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <style>
+    img{
+      width: 300px;
+      height: 300px;
+    }
+    #navbar{
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: end;
+      border: 1px solid blue;
+      margin-bottom: 25px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    #container{
+        display: grid;
+        grid-template-columns: repeat(4,auto);
+    }
+  </style>
+  <body>
+    <div id="navbar">
+      <a href="./index.html" style="text-decoration: none;" id="cart">Admin</a>
+      <a href="./trouser.html" style="text-decoration: none;" id="cart">Trouser</a>
+      <a href="./t-shirt.html" style="text-decoration: none;" id="cart">T-shirt</a>
+      <a href="./shirt.html" style="text-decoration: none;" id="cart">Shirt</a>
+    </div>
+
+    <h1>Inventory Trouser</h1>
+    <div id="container"></div>
+  </body>
+</html>
+
+<script>
+    //append to DOM
+    let append = (data) => {
+        let con = document.getElementById("container");
+        con.innerHTML=null;
+        data.forEach((el, index) => {
+            let image = document.createElement("img");
+            image.src = el.image;
+
+            let name = document.createElement("p");
+            name.innerText=el.name;
+
+            let price = document.createElement("p");
+            price.innerText = el.price;
+
+            let category = document.createElement("p");
+            category.innerText = el.category
+
+            let button = document.createElement("button");
+            button.innerText ="Remove";
+
+            button.onclick = () => {
+                remove(index);
+            }
+
+            let div = document.createElement("div");
+            div.append(image,name,category,price,button);
+            con.append(div);
+        })
+    };
+
+
+    //get data from LS
+    let main = () => {
+        let data = JSON.parse(localStorage.getItem("trouser"));
+        append(data);
+    }
+
+    let remove = (index) =>{
+        let data = JSON.parse(localStorage.getItem("trouser"));
+        data.splice(index,1);
+        localStorage.setItem("trouser",JSON.stringify(data))
+        append(data);
+    }
+
+    main();
+
+</script>

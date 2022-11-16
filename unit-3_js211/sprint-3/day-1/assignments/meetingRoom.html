@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    // LLD - Low level design
+    // create a LLD for an meeting room
+
+    // Building
+    // Floors
+    // Meeting rooms (1 - 24)
+    // slots : - [1,2], [5,6] [6,9] [9-13](timing slots) [array of individual slot]
+    // slot :  [start, end]
+
+    //start with the simplest thing (bottom to top)
+
+    /*
+        1. slot : [start, end]
+---------------------------------------------------------------------------
+        2. slots : [array of slot] lile [slo1,slot2]
+            - slots :[slot1,slot2]
+            - add a slot
+            - delete a slot
+            - size
+            - isAvaliable
+----------------------------------------------------------------------------
+        3. Meeting Room : 
+            - name: string
+            - capacity : Number
+            - slots   
+            - avaliable slots
+            -  addSlots
+            - deleteSlots
+            - isAvaliable
+---------------------------------------------------------------------------
+        4. floors:
+            - name : String
+            - meeting rooms : []
+            - addMeetingRoom
+            - deleteMeetingRoom
+
+------------------------------------------------------------------------------------
+        5. Building : 
+            - Name: string
+            - Floors : [];
+            - addFloor
+            - deleteFloor
+            - 
+
+
+    */
+
+   /*
+    slot - [start(s1),end(e1)]
+    slots : [[s1,e1], [s2,e2], [s3,e3]]
+    how many slots in a meeting room
+   */
+
+
+    class Slot{
+        #slot
+        constructor(start,end){
+            this.#slot = [start,end]
+        }
+
+        get start(){
+            return this.#slot[0]
+        }
+        get end(){
+            return this.#slot[1]
+        }
+        //ehen the next meeting starting or ending
+
+
+    }
+    // let s1 = new Slot(1,2) // 24Hrs time format
+
+    // // when is the meeting ending
+    // console.log(s1.end) //for star or both enter the getter accordingly
+
+
+    class Slots{
+        #slots
+        constructor(){
+            this.#slots =[];
+        }
+        get getAllSlots(){
+            return this.#slots
+        }
+
+        add(slot){
+            if(this.isAvaliable(slot.start,slot.end)){
+                this.#slots.push(slot);
+            }
+
+        }
+
+        isAvaliable(start,end){
+            for(let slot of this.#slots){
+                if(start < slot.end && end>slot.start){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        get size(){
+            return this.slots.length
+        }
+
+        listSlot(){
+            for(let s of this.#slots){
+                console.log(`Start : ${s.start}, End : ${s.end}`)
+            }
+        }
+
+        deleteSlot(slot){
+            for(let i=0;i<this.#slots.length;i++){
+                if(slot.start === this.#slots[i].start && slot.end === this.#slots[i].end){
+                    this.#slots.splice(i,1);
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    //s1 is declared above
+    // let s2 = new Slot(3,4);
+    // let s3 = new Slot(3,5)
+    // let s4 = new Slot(6,2)
+
+    // let slots = new Slots();
+    // slots.add(s1);
+    // slots.add(s2)
+    // slots.add(s3) // not added in browser console because it overlapping
+    // slots.add(s4)
+    
+    // console.log(slots.getAllSlots);
+    // slots.listSlot();
+
+    // slots.deleteSlot(s2);
+    // slots.listSlot();
+
+    class MeetingRoom{
+        #name
+        #capacity
+        #slots
+        #avaliableSlots
+
+        constructor(name,capacity){
+            this.#name=name;
+            this.#capacity = capacity;
+            this.#slots = new Slots();
+            this.#avaliableSlots = [];
+        }
+
+        get name(){
+            return this.#name;
+        }
+
+        get capacity(){
+            return this.#capacity;
+        }
+
+        get slots(){
+            return this.#slots;
+        }
+
+        get avaliableSlots(){
+            return this.#avaliableSlots;
+        }
+
+        setAvaliableSlots(slots){
+            this.#avaliableSlots =[];
+            if(this.#slots.size ===0 ){
+                this.#avaliableSlots.push([1,8]);
+                return;
+            }
+            let start =1;
+
+            for(let slot of this.#slots){
+                if(slot.start <= start){
+                    start = slot.end;
+                    continue;
+                }
+                const end = slot.start;
+                this.#avaliableSlots.push([start,end]);
+                start= slot.end
+            }
+
+            if(start<8){
+                this.#avaliableSlots.push([start,8]);
+            }
+
+        }
+    }
+
+    // let m1 = new MeetingRoom("Room-1", 30);
+
+    // let s1 = new Slot(1,2)
+    // let s2 = new Slot(3,4)
+    // let s3 = new Slot(3,5)
+    // let s4 = new Slot(6,7)
+
+    // m1.slots.add(s1)
+    // m1.slots.add(s2)
+    // m1.slots.add(s3)
+    // m1.slots.add(s4)
+
+    // console.log(m1)
+    // m1.slots.listSlot()
+
+    class Floor{
+        #name;
+        #MeetingRooms;
+
+        constructor(name){
+            this.#name = name;
+            this.#MeetingRooms =[];
+        }
+
+        get name(){
+            return this.#name;
+        }
+
+        get MeetingRooms(){
+            return this.#MeetingRooms
+        }
+
+        addMeetingRoom(newRoom){
+            this.#MeetingRooms.push(newRoom);
+        }
+
+        deleteMeetingRoom(name){
+            for(let i=0;i<this.#MeetingRooms.length;i++){
+                if(this.#MeetingRooms[i].name === name){
+                    this.#MeetingRooms.splice(i,1);
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    class Building{
+        #name;
+        #floors;
+
+        constructor(name){
+            this.#name = name;
+            this.#floors = [];
+        }
+
+        get name(){
+            return this.#name;
+        }
+        get floor(){
+            return this.#floors;
+        }
+
+        addFloor(newFloor){
+            this.#floors.push(newFloor);
+        }
+
+        getFloorByName(name){
+            return this.#floors.find((f) => f.name === name);
+        }
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

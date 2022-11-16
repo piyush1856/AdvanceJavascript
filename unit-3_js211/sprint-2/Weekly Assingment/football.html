@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select name="" id="team-1" onchange="selectteam1()">
+        <option value="Barcelona">barcelona</option>
+        <option value="AC Milan">ac Milan</option>
+    </select>
+    <select name="" id="team-2"onchange="selectteam2()">
+        <option value="Barcelona">barcelona</option>
+        <option value="AC Milan">ac Milan</option>
+    </select>
+    <select name="" id="year" onchange="selectyear()">
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+    </select>
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    let baseURL = "https://jsonmock.hackerrank.com/api/football_matches?"
+
+    let selectteam1 =async () => {
+        let value = document.getElementById("team-1").value;
+        baseURL += `&team1=${value}`;
+
+        let res = await fetch(baseURL);
+        let data = await res.json();
+
+        console.log(data.data)
+        data=data.data;
+        append(data);
+       
+        // console.log(baseURL)
+        // window.open(baseURL);
+        
+        
+    };
+
+    let selectteam2 =async () => {
+        let value = document.getElementById("team-2").value;
+    
+        baseURL += `&team2=${value}`;
+
+        let res = await fetch(baseURL);
+        let data = await res.json();
+
+        console.log(data.data)
+        data=data.data;
+        append(data);
+        // console.log(baseURL)
+        // window.open(baseURL).
+        
+        
+    };
+
+    let selectyear = async () => {
+        let value = document.getElementById("year").value;
+        baseURL += `&year=${value}`;
+
+        let res = await fetch(baseURL);
+        let data = await res.json();
+
+        console.log(data.data)
+        data=data.data;
+        append(data);
+
+        // window.open(baseURL);
+
+    }
+
+
+    function append(data) {
+        let container = document.querySelector("#container");
+        container.innerHTML = null;
+
+
+
+        data.forEach(function (el) {
+            let box = document.createElement("div");
+            box.style.border="1px solid red"
+            box.setAttribute("class", "box")
+            let p1 = document.createElement("p");
+            p1.innerText = el.team1;
+
+            let p2 = document.createElement("p");
+            p2.innerText = el.team2;
+
+            let p3 = document.createElement("p");
+            p3.innerText = el.year;
+
+            // let p4 = document.createElement("p");
+            // p4.innerText = `imdbID: ${el.imdbID}`;
+  
+
+
+            box.append(p1,p2,p3);
+            
+
+            document.querySelector("#container").append(box);
+        });
+        
+    }
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+    // object.create()
+
+    let automobile = {
+        Brand : "TATA",
+        Type : "SUV",
+        Length : "5 metre",
+        Height : "4 metre"
+    }
+
+    let nexon = Object.create(automobile)
+
+    nexon.model="Nexon"
+    nexon.price = "15 lakh"
+    nexon.engine = "electric"
+    nexon.mileage = "500 Km"
+
+    console.log(nexon)
+
+
+
+    // constructor
+    function automobileC(b,t,l,h){
+        this.Brand=b
+        this.Type=t
+        this.Length=l
+        this.Height=h
+    }
+
+    let nexonC=new automobileC("TATA","SUV", "5 metre", "4 metre" );
+    nexonC.model="Nexon"
+    nexonC.price = "15 lakh"
+    nexonC.engine = "electric"
+    nexonC.mileage = "500 Km"
+
+    console.log(nexonC)
+
+</script>

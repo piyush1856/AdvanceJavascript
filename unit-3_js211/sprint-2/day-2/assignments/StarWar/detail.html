@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+      #container{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    .box1{
+        border: 1px solid red;
+        padding: 10px;
+    }
+    .box2{
+        border: 1px solid red;
+        padding: 10px;
+    }
+    #name{
+        display: flex;
+        justify-content: center;
+    }
+    button{
+        margin-left: 730px;
+        margin-top: 20px;
+    }
+</style>
+<body onload="detail()">
+    <div id="name"></div>
+    <div id="container"></div>
+    <button onclick="goBack()">Go Back</button>
+</body>
+</html>
+
+<script>
+    detail =()=> {
+        let el = JSON.parse(localStorage.getItem("starwar"));
+
+        let p1 = document.createElement("h1");
+        p1.innerText = el.name;
+        
+        
+        let box1 = document.createElement("div");
+        box1.setAttribute("class","box1")
+        let p2 = document.createElement("h3");
+        p2.innerText = "Personal Info";
+        let p3 = document.createElement("p");
+        p3.innerText = ` Gender : ${el.gender}`;
+        let p4 = document.createElement("p");
+        p4.innerText = `Birth Year : ${el.birth_year}`;
+        let p5 =document.createElement("p");
+        p5.innerText = `Height : ${el.height}`;
+
+        box1.append(p2,p4,p3,p5);
+
+        let box2 = document.createElement("div");
+        box2.setAttribute("class","box2");
+        let p6 = document.createElement("h3");
+        p6.innerText = "Anatomy"
+        let p7 = document.createElement("p");
+        p7.innerText = `Eye Color: ${el.eye_color}`;
+        let p8 = document.createElement("p");
+        p8.innerText = `Mass: ${el.mass}`;
+        let p9 = document.createElement("p");
+        p9.innerText = `Hair Color: ${el.hair_color}`;
+        box2.append(p6,p7,p8,p9);
+            
+        document.querySelector("#name").append(p1)
+        document.querySelector("#container").append(box1,box2);
+      
+    }
+
+    function goBack(){
+        window.location.href = "starwar.html";
+    }
+</script>

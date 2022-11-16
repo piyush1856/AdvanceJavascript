@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input type="text" id="query" placeholder="MOVIE NAME">
+    <button onclick="getData()" id="btn">Search</button>
+    <!-- <button onclick="fetched()" id="btn">Search</button> -------   BUTTON FOR METHOD 2-->
+    <select onChange="YearSort()" id="sortYear">
+        <option value="">Sort By Year</option>
+        <option value="Ascending">Ascending</option>
+        <option value="Descending">Descending</option>
+    </select>
+
+    <select onChange="YearFilter()" id="filterYear">
+        <option value="">Filter By Year</option>
+        <option value="1999">< 1999</option>
+        <option value="2000">2000 ></option>
+        <option value="2010">2010 ></option>
+        <option value="2020">2020 ></option>
+    </select>
+    <div id="container"></div>
+</body>
+</html>
+<script src="index.js"></script>

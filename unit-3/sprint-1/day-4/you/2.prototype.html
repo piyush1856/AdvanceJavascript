@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // web 19 student database
+
+    // create custom methods
+
+    let arr = [1,2,3] // expectation
+
+    let arr2 = new Array(1,2,3) //reality
+    //console.log(arr2)
+    // methods will be inside prototype in console
+
+    // arr2.map - expectation, we do this like this
+
+    // Array.prototype.map - reality , JS do it like this.
+
+
+    // this is how we add our own method to JS
+    Array.prototype.namaskar = function(){
+        console.log("namaskar from web19")
+    }
+    arr2.namaskar()
+
+    // Array - blueprint
+    // namaskar - customization
+
+
+    // add your own method on all array that prints your name
+
+    Array.prototype.myMethod = function(){
+        console.log("Piyush Tyagi")
+    }
+    arr2.myMethod()
+
+    // add our own .push()
+    Array.prototype.dhakka = function(x){
+        // this -> arr
+        //this.push(x);
+        // or,
+        let index = this.length
+        this[index] = x;
+    }
+    arr.dhakka(6);
+    console.log(arr)
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #navbar{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid grey;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+#container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+}
+img{
+    width: 100%;
+    height: 60%;
+}
+</style>
+<body>
+    <div id="navbar"></div>
+
+    <div id="container"></div>
+
+    <form action="">
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <input type="text" id="username" placeholder="UserName">
+        <input type="number" id="mobile" placeholder="Mobile No">
+        <input type="text" id="description" placeholder="description">
+        <button id="submit">submit</button>
+        <!-- you can't use inline onclick beacuase of import/export -->
+    </form>
+</body>
+</html>
+
+<script src="./Script/signup.js" type="module"></script>

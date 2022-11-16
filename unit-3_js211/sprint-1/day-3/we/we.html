@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" name="" id="pin">
+    <button onclick="submit()">Submit</button>
+</body>
+</html>
+
+<script>
+    let data = 1234;
+
+    let submit = () => {
+        let pin = document.getElementById("pin").value;
+
+        let p = new Promise ((res,rej) =>{
+            if(Number(pin) === data){
+                res("correct pin");
+            }else{
+                rej("incorrect pin")
+            }
+        })
+
+        p.then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err)
+        }).finally(() => {
+            console.log("promises completed")
+        });
+    }
+
+    //finally is used when something is not resolved nor rejected
+    //no matter resolves or rejected , it will definetly executed
+</script>

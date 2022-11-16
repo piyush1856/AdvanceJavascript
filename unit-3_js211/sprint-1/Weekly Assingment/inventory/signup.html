@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-Up</title>
+  </head>
+  <style>
+    #navbar{
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: end;
+      border: 1px solid blue;
+      margin-bottom: 25px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <div id="navbar">
+      <a href="./product.html">Add Product</a>
+      <a href="./store.html">E-Store</a>
+      <a href="./login.html" id="login">Login</a>
+      <a href="./signup.html" id="signup">signup</a>
+    </div>
+
+    <div id="form">
+
+        <h1>User Sign Up</h1>
+        <input type="text" id="name" placeholder="Enter Name">
+        <input type="text" id="email" placeholder="Enter Email">
+        <input type="text" name="" id="password" placeholder="Enter Password">
+
+        <button id="sign_up" onclick="signUp()">Sign Up</button>
+    </div>
+  </body>
+</html>
+
+<script>
+let user = JSON.parse(localStorage.getItem("users")) || [];
+class User {
+    constructor(n,e,p){
+        this.name =n;
+        this.email=e;
+        this.password = p;
+    }
+
+    signup(n,e,p){
+        this.name =n
+        this.email = e
+        this.password = p;
+
+        user.push(this);
+        localStorage.setItem("users", JSON.stringify(user));
+    }
+}
+
+
+let data;
+
+let signUp = () => {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    
+    data = new User (name,email,password)
+    data.signup(name,email,password)
+}
+</script>

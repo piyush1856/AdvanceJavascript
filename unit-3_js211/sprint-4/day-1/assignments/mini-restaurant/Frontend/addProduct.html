@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/navbar.css" />
+    <link rel="stylesheet" href="./style/add.css">
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div id="contain">
+        <div id="AddProd">
+            <h3>ADD PRODUCT</h3>
+            <label for="">Id</label><br />
+            <input type="number" id="id" /><br />
+            <label for="">Name</label><br />
+            <input type="text" id="name" /><br />
+            <label for="">Type</label><br />
+            <input type="text" id="type" /><br />
+            <label for="">Price</label><br />
+            <input type="number" id="price" /><br />
+            <label for="">Rating</label><br />
+            <input type="number" id="rating" /><br />
+            <label for="">Image Url</label><br />
+            <input type="text" id="imageurl" /><br />
+            <label for="">Delivery Time</label><br />
+            <input type="text" id="deliveryTime" /><br />
+            
+            <button onclick="addProduct()">Add</button>
+          </div>
+      
+          <div id="RemoveProd">
+            <h3>REMOVE PRODUCT</h3>
+            <input type="number" name="" id="removeid" placeholder="Enter Product ID" />
+            <button id="removebtn" onclick="removePro()">Remove</button>
+          </div>
+
+          <div id="updateProd">
+            <h3>UPDATE PRODUCT</h3>
+            <input type="number" name="" id="updateid" placeholder="Enter Product ID" />
+            <button id="updatebtn" onclick="updatePro()">Update</button>
+          </div>
+
+          
+    </div>
+    
+  </body>
+</html>
+<script type="module">
+  import navbar from "../../component/navbar.js";
+
+  document.querySelector("#navbar").innerHTML = navbar();
+
+  let loggedIn = JSON.parse(localStorage.getItem("loggedin")) || [];
+  let logout = document.querySelector("#logout");
+  logout.addEventListener("click", logout1);
+
+  let profileDetails = JSON.parse(localStorage.getItem("profile"));
+
+  let profileNav = document.querySelector("#profile");
+
+  let login = document.querySelector("#loginNav");
+
+  let Signup = document.querySelector("#signNav");
+
+  let Addproduct = document.querySelector("#Addproduct");
+
+  let name = sessionStorage.getItem("name");
+
+  if (loggedIn == false || loggedIn == null) {
+  logout.style.display = "none";
+  profileNav.style.display = "none";
+  Addproduct.style.display="none"
+  console.log("non");
+  // alert("Please login first");
+} else {
+  login.style.display = "none";
+  Signup.style.display = "none"
+}
+
+
+if(profileDetails!=[]||profileDetails!=null||profileDetails!=undefined){
+  if (profileDetails[0].description == "Admin") {
+    Addproduct.style.display="block"
+    console.log("non");
+    // alert("Please login first");
+  } else {
+    Addproduct.style.display="none"
+  }
+
+  // console.log("hey")
+}
+else{
+  Addproduct.style.display="none"
+}
+
+  function logout1() {
+    // console.log("name")
+    sessionStorage.setItem("name", "");
+    localStorage.clear();
+
+    alert("Logged out successfully !!");
+    window.location.reload();
+  }
+</script>
+
+<script>
+  let addProduct = async () => {
+    let product = {
+      id: +document.querySelector("#id").value,
+      name: document.querySelector("#name").value,
+      type: document.querySelector("#type").value,
+      price: +document.querySelector("#price").value,
+      rating: +document.querySelector("#rating").value,
+      image: document.querySelector("#imageurl").value,
+      deliveryTime: +document.querySelector("#deliveryTime").value,
+      
+    };
+
+    product_data = JSON.stringify(product);
+
+    let res = await fetch("http://127.0.0.1:3000/api/database", {
+      method: "POST",
+      body: product_data,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let res_data = await res.json();
+    console.log(res_data);
+  };
+
+  let removePro = async () => {
+    let removeId = document.querySelector("#removeid").value;
+
+    let res = await fetch(`http://127.0.0.1:3000/api/database/${removeId}`, {
+      method: "DELETE",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let res_data = await res.json();
+    console.log(res_data);
+  };
+
+
+
+  let updatePro = async () => {
+    let updateid = document.querySelector("#updateid").value;
+
+    let res = await fetch(`http://127.0.0.1:3000/api/database/${updateid}`, {
+      method: "PUT",
+
+      body:JSON.stringify({
+        
+      id: 1,
+      name: "KFC",
+      type: "Burger, Fast Food, Biryani, Desserts, Beverages",
+      price: 250,
+      rating:5.5,
+      image: "https://b.zmtcdn.com/data/dish_photos/99f/72242c3ef1e98f4a12621216aa3e099f.jpg?output-format=webp",
+      deliveryTime: "30"
+      
+    
+      }),
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let res_data = await res.json();
+    console.log(res_data);
+  };
+</script>

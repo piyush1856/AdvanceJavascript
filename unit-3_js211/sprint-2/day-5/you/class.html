@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    //while creating a class .. name will always start with capital letter
+    class Stack{
+        constructor(){
+            this.length =0;
+            this.stack = [];
+        }
+
+        push(el){
+            this.stack.push(el);
+            this.length++;
+        }
+
+        pop(){
+            this.stack.pop();
+            this.length--;
+        }
+    }
+
+    let stack = new Stack();
+    stack.push(1);
+    stack.push(2);
+    console.log(stack);
+
+    //private variable
+    //if you don't want user to access any variable
+
+    
+</script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        display: grid;
+        grid-template-columns: repeat(4,auto);
+    }
+    img{
+        width: 100%;
+        height: 350px;
+    }
+</style>
+<body>
+    <h1>Inventory</h1>
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+
+    //append to DOM
+    let append = (data) => {
+        let con = document.getElementById("container");
+        con.innerHTML=null;
+        data.forEach((el, index) => {
+            let image = document.createElement("img");
+            image.src = el.image;
+
+            let name = document.createElement("p");
+            name.innerText=el.name;
+
+            let price = document.createElement("p");
+            price.innerText = el.price;
+
+            let button = document.createElement("button");
+            button.innerText ="Remove";
+
+            button.onclick = () => {
+                remove(index);
+            }
+            let div = document.createElement("div");
+            div.append(image,name,price,button);
+            con.append(div);
+        })
+    };
+
+
+    //get data from LS
+    let main = () => {
+        let data = JSON.parse(localStorage.getItem("data"));
+        append(data);
+    }
+
+    let remove = (index) =>{
+        let data = JSON.parse(localStorage.getItem("data"));
+        data.splice(index,1);
+        localStorage.setItem("data",JSON.stringify(data))
+        append(data);
+    }
+
+    main();
+
+</script>
+
+<!-- read about temporal dead zone -->

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO</title>
+</head>
+<body>
+    <h1>TODO LIST</h1>
+    <input type="text" placeholder="Enter Task" id="input">
+    <button id="add-btn">ADD</button>
+
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    class Todo{
+        #todos;
+        constructor(t){
+            this.#todos=[];
+        }
+
+        get item(){
+            return this.#todos;
+        }
+
+
+        set item(title){
+            const newItem = {
+                id:Date.now(),
+                title:title,
+                status: false,
+            }
+
+            this.#todos =[...this.#todos,newItem]
+        }
+
+        toggleStatus(id){
+            this.#todos = this.#todos.map((el) => 
+                // if(el.id ==id){
+
+                // }
+            el.id ===id ? {...el, status: !el.status} : el
+            )
+        }
+
+
+        deleteItem(id){
+            this.#todos = this.#todos.filter((el)=> el.id !== id)
+        }
+
+
+    }
+
+    const list = new Todo();
+    window.addEventListener("load", ()=> {
+        const addBtn=document.getElementById("add-btn");
+
+        addBtn.onclick=()=> {
+            const text = document.getElementById("input").value;
+            list.item =text;
+            console.log(list)
+            renderDOM();
+        }
+    })
+
+    //todo structure
+    function TodoItem({id,title,status}){
+        const div = document.createElement("div");
+        const li = document.createElement("li");
+        li.innerHTML = `${title} - ${status}`
+
+        const btn = document.createElement("button");
+        btn.innerText ="Toggle";
+        btn.onclick=() => {
+            list.toggleStatus(id);
+            renderDOM();
+        }
+
+
+        const btn2 = document.createElement("button");
+        btn2.innerText ="Delete";
+        btn2.onclick=() => {
+            list.deleteItem(id);
+            renderDOM();
+        }
+
+
+
+        div.append(li,btn,btn2);
+        return div;
+    }
+
+
+    let renderDOM = () =>{
+        let container = document.getElementById("container");
+        container.innerHTML = null;
+
+        //multiple todos
+        list.item.forEach((el)=> {
+            let newItem = TodoItem(el);
+            container.append(newItem);
+        })
+
+    }
+
+    
+</script>

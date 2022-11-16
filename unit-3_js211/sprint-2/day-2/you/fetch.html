@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    //http://www.omdbapi.com/?i=tt3896198&apikey=1487ce35
+    //1487ce35
+
+    //let url = "http://www.omdbapi.com/?i=tt3896198&apikey=1487ce35&s=thor";
+    
+    const url = "https://reqres.in/api/users?page=2"
+    const url2 = "https://reqres.in/api/users?page=1"
+    
+    
+    // let value = fetch(url);
+
+    // console.log(value);
+   
+
+    // value.then((res) => {
+    //     return res.json();
+    // }).then((res)=> {
+    //     console.log(res)
+    // })
+
+    // let sum = (a,b) => a+b  it will automatically return
+
+
+    // let allPromise =[
+    //     fetch(url).then((res) => res.json()),
+    //     fetch(url2).then((res)=> res.json())
+    // ]
+
+    let allPromise=[];
+    for(let i=1;i<=2;i++){
+        const url =     `https://reqres.in/api/users?page=${i}`
+        let Promise = fetch(url).then((res) => res.json())
+        allPromise.push(Promise)
+    }
+
+    let getData =async() => {
+           
+        let data = await Promise.all(allPromise)
+        console.log(data)
+
+        let result = [...data[0].data, ...data[1].data]
+        console.log(result);
+
+
+        // let res = await fetch(url);
+        // let data= await res.json();
+
+        // let res2 = await fetch(url2);
+        // let data2= await res2.json();
+
+        // console.log(data)
+        // console.log(data2)
+
+    }
+    getData()
+
+</script>

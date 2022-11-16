@@ -1,0 +1,114 @@
+#container {
+  width: 18%;
+  /* border: 1px solid #d8812a; */
+  margin: auto;
+  margin-top: 100px;
+  background-color: rgb(231, 231, 231);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+#heading {
+  /* border: 1px solid red; */
+  background-color: #d8812a;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+#heading > div {
+  width: 25%;
+  border: 1px solid blue;
+  margin: auto;
+
+  /* background-color: #d8812a; */
+}
+#heading > div > img {
+  width: 100%;
+  mix-blend-mode: screen;
+}
+#tranStatus{
+    font-size: 25px;
+    font-weight: bold;
+}
+#date{
+    font-size: 13px;
+}
+#tranId {
+  background-color: white;
+
+  padding: 10px;
+  margin: 6px 0 6px 0;
+}
+
+#tranId > div {
+  display: flex;
+  background-color: white;
+  font-weight: bold;
+  justify-content: space-between;
+}
+#tranId > div>p:nth-child(2){
+    font-weight: bold;
+    font-size: 13px;
+    color: purple;
+}
+
+
+#info {
+  background-color: white;
+  margin: 6px 0;
+  padding: 10px;
+}
+
+#tranId > p {
+  font-size: 13px;
+  color: rgb(88, 88, 88);
+}
+
+#info > div:nth-child(1),
+#debit > div:nth-child(1) {
+  font-size: 13px;
+  color: rgb(88, 88, 88);
+}
+
+#info > div:nth-child(2) > p:nth-child(1),
+#debit > div:nth-child(2) > div:nth-child(1) > p:nth-child(1) {
+  font-weight: bold;
+}
+#info > div:nth-child(2) > p:nth-child(2),
+#debit > div:nth-child(2) > div:nth-child(1) > p:nth-child(2) {
+  font-size: 13px;
+  color: rgb(88, 88, 88);
+}
+
+#debit {
+  background-color: white;
+  padding: 10px;
+  margin: 6px 0 6px 0;
+}
+
+#debit > div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+
+}
+#debit > div:nth-child(2)>div:nth-child(2){
+    text-align: right;
+    /* border: 1px solid blue; */
+}
+
+#debit > div:nth-child(2)>div:nth-child(2)>p:nth-child(1){
+    font-weight: bold;
+}
+
+#debit > div:nth-child(2)>div:nth-child(2)>p:nth-child(2){
+    font-weight: bold;
+    font-size: 13px;
+    color: purple;
+}
+
+#done{
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    margin-top: -5px;
+}

@@ -1,0 +1,137 @@
+{
+  "todo": [
+    {
+      "id": 1,
+      "title": "Task-1",
+      "status": false
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "name": "KFC",
+      "type": "Burger, Fast Food, Biryani, Desserts, Beverages",
+      "price": 250,
+      "rating": 3.5,
+      "image": "https://b.zmtcdn.com/data/dish_photos/99f/72242c3ef1e98f4a12621216aa3e099f.jpg?output-format=webp",
+      "deliveryTime": 32
+    },
+    {
+      "id": 2,
+      "name": "Empire Restaurant",
+      "type": "North Indian, Biryani, Kebab, Chinese, South Indian, Beverages",
+      "price": 250,
+      "rating": 3.4,
+      "image": "https://b.zmtcdn.com/data/dish_photos/0dd/877d09238d65eab4a753937e3bee20dd.jpg?output-format=webp",
+      "deliveryTime": 33
+    },
+    {
+      "id": 3,
+      "name": "Rumi",
+      "type": "Awadhi, Mughlai, North Indian, Kebab",
+      "price": 280,
+      "rating": 2,
+      "image": "https://b.zmtcdn.com/data/dish_photos/e8f/d87f862337bbd6463c19582443d94e8f.jpg?output-format=webp",
+      "deliveryTime": 47
+    },
+    {
+      "id": 4,
+      "name": "Al-Bek",
+      "type": "Mughlai, Arabian, North Indian, Chinese, Seafood, Sichuan",
+      "price": 300,
+      "rating": 4.5,
+      "image": "https://b.zmtcdn.com/data/dish_photos/1f7/eb3db127f40aa89dca2bc2f1693111f7.jpg?output-format=webp",
+      "deliveryTime": 50
+    },
+    {
+      "id": 5,
+      "name": "Leon Grill",
+      "type": "Burger, Fast Food, Wraps, Street Food, Desserts, Beverages",
+      "price": 240,
+      "rating": 5,
+      "image": "https://b.zmtcdn.com/data/dish_photos/393/d6a6bfc57e409caa0ddef831e499a393.jpg?output-format=webp",
+      "deliveryTime": 43
+    },
+    {
+      "id": 6,
+      "name": "Kabab Magic",
+      "type": "North Indian, Kebab, Hyderabadi, Beverages",
+      "price": 200,
+      "rating": 4.8,
+      "image": "https://b.zmtcdn.com/data/dish_photos/92a/a3d1faf61b248a46d6e080ed2686a92a.jpg?output-format=webp",
+      "deliveryTime": 36
+    },
+    {
+      "id": 7,
+      "name": "Louis Burger",
+      "type": "Burger, Fast Food",
+      "price": 220,
+      "rating": 3.6,
+      "image": "https://b.zmtcdn.com/data/dish_photos/0f0/d304db1e4b4a536758401591b45d50f0.jpg?output-format=webp",
+      "deliveryTime": 32
+    },
+    {
+      "id": 8,
+      "name": "Hari Super Sandwich",
+      "type": "Sandwich, Fast Food, Street Food",
+      "price": 150,
+      "rating": 2.6,
+      "image": "https://b.zmtcdn.com/data/dish_photos/f22/0aaf179eabe8882805c5db8235650f22.jpg?output-format=webp",
+      "deliveryTime": 34
+    },
+    {
+      "id": 9,
+      "name": "Rolling Dough Cafe",
+      "type": "Continental, Seafood, Salad, Desserts, Beverages, Pasta, Pizza",
+      "price": 200,
+      "rating": 2.9,
+      "image": "https://b.zmtcdn.com/data/dish_photos/744/8a3b1abce550f45e50486f0d5d1f3744.jpg?output-format=webp",
+      "deliveryTime": 33
+    },
+    {
+      "id": 10,
+      "name": "Faasos - Wraps & Rolls",
+      "type": "North Indian, Desserts, Wraps, Beverages",
+      "price": 160,
+      "rating": 3.4,
+      "image": "https://b.zmtcdn.com/data/dish_photos/20f/f4f52682c9bc3026412ca09ac555b20f.jpg",
+      "deliveryTime": 50
+    },
+    {
+      "id": 11,
+      "name": "The Kolkata Kati Roll",
+      "type": "Rolls, Fast Food",
+      "price": 220,
+      "rating": 3.5,
+      "image": "https://b.zmtcdn.com/data/dish_photos/9a5/8ce7cc1e1878f7527f5184b6a4bcd9a5.jpg",
+      "deliveryTime": 51
+    },
+    {
+      "id": 12,
+      "name": "Khan Saheb Grills And Rolls",
+      "type": "North Indian, Rolls, Kebab, Mughlai, Biryani, Beverages",
+      "price": 250,
+      "rating": 4.8,
+      "image": "https://b.zmtcdn.com/data/dish_photos/e46/b81adfff434604bd29b8589e4d02de46.jpg",
+      "deliveryTime": 45
+    },
+    {
+      "id": 13,
+      "name": "Tibb's Frankie",
+      "type": "Rolls",
+      "price": 60,
+      "rating": 2.6,
+      "image": "https://b.zmtcdn.com/data/dish_photos/002/73b52342575bc77e7d19d1ab03628002.jpg",
+      "deliveryTime": 34
+    },
+    {
+      "id": 14,
+      "name": "7 Plates",
+      "type": "North Indian, Mughlai, Rolls, Chinese",
+      "price": 300,
+      "rating": 5,
+      "image": "https://b.zmtcdn.com/data/dish_photos/919/11dffd5acb6b293f00686e9cd7632919.jpg",
+      "deliveryTime": 42
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="query" oninput="debounce(1000,getData)">
+</body>
+</html>
+
+<script>
+    //url = "http://www.omdbapi.com/?i=tt3896198&apikey=1487ce35&s=thor";
+
+    getData = async () => {
+        let query = document.getElementById("query").value; 
+        let url =`http://www.omdbapi.com/?i=tt3896198&apikey=1487ce35&s=${query}`;
+
+        let res = await fetch(url);
+        let data = await res.json();
+        console.log(data)
+
+    }
+    let id;
+    let debounce = (delay,func) => {
+        if(id){
+            clearTimeout(id)
+        }
+        id = setTimeout(() => {
+            func();
+        }, delay);
+    }
+</script>

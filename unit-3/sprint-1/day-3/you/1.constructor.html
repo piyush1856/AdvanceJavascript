@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    // create a function that will return a obj
+
+    function nikeProduct(n,t,p){
+        let obj = {
+            name:n,
+            type:t,
+            price:p
+        }
+        return obj
+    }
+
+    let x = nikeProduct("shoes", "Sneaker", 2000)
+    console.log("x:",x);
+
+    
+    // do same above thing with the help of constructor function
+    // normal function
+    function nikeProduct(n,t,p){
+        let obj = {}
+        obj.name=n;
+        obj.type=t;
+        obj.price=p;
+        
+        return obj
+    }
+
+    let y = nikeProduct("shoes", "Sneaker", 2000)
+    console.log("y:",y);
+
+    // constructor function - blueprint
+    function nikeProductCF(n,t,p){
+        this.name = n;
+        this.type = t;
+        this.price = p;
+    }
+    let z = new nikeProductCF("T-Shirt", "Sports", "1999");
+    console.log("z:",z);
+    // it will give undefined without new
+    // new -> return
+    // can be used to create multiple obj
+    // this is initializing the object
+    // this -> {}
+    // new and this keyword will work for you
+    // constructor function specifically used for object
+    
+</script>
+

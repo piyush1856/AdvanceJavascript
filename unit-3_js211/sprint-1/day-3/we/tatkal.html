@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #body{
+        color: green;
+        font-size: 25px;
+        font-weight: bold;
+    }
+</style>
+<body>
+    <input type="name" placeholder="Name" id="name">
+    <button onclick="submit()">Submit</button> <br>
+
+    <div id="body">
+
+    </div>
+</body>
+</html>
+
+<script>
+    //tatkal booking system
+    //confirm||waiting
+    //resolved||rejected
+
+    //trains :- 100 seats
+    // 100 seats are booked --> waiting ticket
+
+    let waiting = 105;
+    let seats = 100;
+    let id;
+    setInterval(() => {
+        waiting--;
+        console.log(waiting);
+    }, 2000);
+
+    let submit = () =>{
+        let name = document.getElementById("name").value;
+        // let user_waiting = waiting +1;
+        waiting++;
+        let p = new Promise((res,rej) => {
+
+            id = setInterval(() => {
+                if(waiting <= seats){
+                    clearInterval(id)
+                    res("Your seats has been confirmed")
+                }else{
+                    rej("Waiting");
+                }
+            },1000);
+            
+
+        });
+
+        p.then((res) => {
+            
+            alert(`${name} ${res}`)
+
+            document.querySelector("#body").append("Seat Confirmed")
+        }).catch((err) => {
+            alert(`${name} ${err}`)
+        })
+    };
+
+
+
+</script>

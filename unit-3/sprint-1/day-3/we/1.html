@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" onsubmit="Submit(event)" id="form">
+        <input type="text" id="name" placeholder="name">
+        <input type="number" id="price" placeholder="price">
+        <input type="submit" id="submit">
+    </form>
+</body>
+</html>
+
+<script>
+    let array = [];
+    function Submit(e){
+        e.preventDefault();
+
+        let form = document.getElementById("form");
+        let name = form.name.value;
+        let price = form.price.value;
+
+        let product = new EcommProduct(name,price);
+        array.push(product);
+        // console.log("product:", product);
+    }
+    
+    function EcommProduct(n,p){
+        this.name =n;
+        this.price = p;
+    }
+</script>

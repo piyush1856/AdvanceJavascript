@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  class Stack {
+    constructor() {
+      this.length = 0;
+      this.stack = [];
+    }
+
+    //COLLECT ALL PARAMS IN ARRAY VIA SPREAD
+
+    push(...arr) {
+      //ACCESS EACH ELEMENT SO THAT WE CAN PUSH
+      arr.forEach((el) => {
+        //PUSH
+        let index = this.length;
+        this.stack[index] = el;
+        this.length++;
+
+        // console.log(el)
+      });
+    }
+
+    remove() {
+      let index = this.length - 1;
+      delete this.stack[index];
+      this.stack.length--;
+      this.length--;
+    }
+
+    peek() {
+      let index = this.length - 1;
+      let top = this.stack[index];
+      return top;
+
+      //OR
+
+      // return this.stack[this.length-1]
+    }
+
+    myEach(...arr) {
+      let x;
+      console.log("For Each ");
+      for (x of arr) {
+        console.log(x * 2);
+      }
+    }
+
+    mymap(...arr) {
+      let x;
+      let map = [];
+
+      for (x of arr) {
+        // console.log(x*2)
+        let el = x * 3;
+        map.push(el);
+      }
+      console.log("MAP ");
+      return map;
+    }
+    myreduce(...arr) {
+      let sum = 0;
+      for (let x of arr) {
+        sum = sum + x;
+      }
+      console.log(`Reduce:${sum}`);
+    }
+
+    isEmpty() {
+      // syntax tarnary operator
+      //condition ? option1 (when true) : option 2(when False)
+      let value = this.length == 0 ? "stack is empty" : "stack is full";
+
+      console.log(value);
+    }
+  }
+
+  let s1 = new Stack();
+
+  s1.push(1, 2, 3, 4, 5, 6);
+  //   s1.remove();
+  s1.isEmpty();
+  s1.myEach(1, 2, 3, 4, 5, 6);
+  let map = s1.mymap(1, 2, 3, 4, 5, 6);
+  console.log(map);
+  s1.myreduce(1, 2, 3, 4, 5, 6);
+  //   let last = s1.peek();
+  console.log(s1);
+</script>

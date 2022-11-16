@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action=""  id="form">
+        <p>E-Commerce</p>
+        <label for="">Product name</label><br>
+        <input id="name" type="text" placeholder="Enter your Product name"><br>
+        <label for="">Category</label><br>
+        <input id="category" type="text" placeholder="Category"><br>
+        <label for="">Image url</label><br>
+        <input id="image" type="url" placeholder="Enter url"><br>
+        <label for="">Price</label><br>
+        <input id="price" type="number" placeholder="Enter price"><br>
+        <label for="">Gender</label><br>
+        <select name="" id="gender">
+            <option value="">Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select><br>
+        <label for="sold">Sold</label><br>
+        <select name="" id="sold">
+            <option value=false>False</option>
+            <option value=true>True</option>
+        </select><br>
+        <input type="submit" id="#add">
+    </form>
+</body>
+</html>
+<script>
+    let form = document.getElementById("form");
+    form.addEventListener("submit",submit);
+    let array = JSON.parse(localStorage.getItem("Products")) || [];
+
+    function submit(){
+        event.preventDefault();
+
+        
+        let name=form.name.value;
+        let category=form.category.value;
+        let image=form.image.value;
+        let price=form.price.value;
+        let gender=form.gender.value;
+        let sold=form.sold.value;
+
+        let product = new EcommProduct(name,category,image,price,gender,sold);
+        array.push(product);
+        // console.log(product)
+        localStorage.setItem("Products",JSON.stringify(array))
+    }
+    
+    function EcommProduct(n,c,i,p,g,s){
+        this.name=n;
+        this.category=c;
+        this.image=i;
+        this.price=p;
+        this.Gender=g;
+        this.sold=s;
+    }
+    // console.log(array)
+</script>

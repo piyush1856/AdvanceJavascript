@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="todo" placeholder="Input TODO">
+        <button id="add_todo" onclick="addTodo()">ADD TODO</button>
+    </div>
+
+    <button onclick="sort()">Sort on title</button>
+
+    <select name="" id="filter" onchange="filter()">
+        <option value="select"> Filter By Status</option>
+        <option value="false">False</option>
+        <option value="true">True</option>
+    </select>
+
+    <div id="container"></div>
+
+    <button onclick="page1()">Page-1</button>
+    <button onclick="page2()">Page-2</button>
+</body>
+</html>
+
+<script src="./main.js"></script>

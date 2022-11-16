@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube App</title>
+</head>
+<style>
+
+/* #container {
+    display:grid;
+    grid-template-columns:10% 58% 18% 18% 18%;
+    width:100%;
+    height: 25px;
+} */
+
+    
+#container{
+    display: grid;
+    grid-template-columns:4% 25% 30% 10% 10% 3% 3% 3%;
+    grid-gap:1.5%;
+    height:40px;
+    background-color:#fff;
+    /* position: fixed; */
+}
+
+.menu{
+    width:100%;
+    height: 35px; 
+}
+input{
+    width:100%;
+    height: 35px;
+}
+button{
+    width: 35%;
+    height: 35px;
+    background-color: white;
+    border-radius: 10%;
+}
+.you{
+    width: 35%;
+    height: 45px; 
+}
+
+.mag{
+width: 100%;
+height: 35px;
+}
+#mic{
+    width: 50%;
+    height: 35px;
+    margin-left: -75%;
+    border-radius: 25%;
+
+}
+.create{
+    width: 100%;
+    height: 35px;
+}
+.dot{
+    width: 35px;
+    height: 35px; 
+}
+#des{
+    background-color:snow
+}
+.pro{
+    width: 100%;
+    height: 35px;  
+}
+
+    
+    h2{margin-top:15px;font-size:1.8rem;overflow: hidden;clear:both;display:inline-block;white-space:nowrap}  /*  titles    */
+    h5{font-size: 15px;}  /* publish */
+    h4{font-size: 18px;}     /* channel name */
+    p{min-height:80px;font-size: 15px;}        /* description */       
+  
+  
+    #main{
+         display: grid;
+        grid-template-columns:40% 58%;
+        grid-gap: 2%;
+        margin-top: 2%;
+        
+    } 
+
+</style>
+<body>
+    <div id="container">
+        <div class="position">
+           <img class="menu " src="https://css-tricks.com/wp-content/uploads/2012/10/threelines.png" alt="">
+       </div>
+       <div class="position">
+           <img class="you" src="https://images.indianexpress.com/2017/08/youtube_logo_new-759.jpg" alt="">
+       </div>
+       <input type="text" placeholder="Search" id="query"> 
+       <button onclick="gg()"  > <img  class="mag" src ="data:image/png;base64,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"> </button> 
+   <div class="position"><img  id="mic" src="data:image/png;base64,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" alt=""></div>
+
+   <div class="position"> <img class= "create" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6BUt2aGecbb27z9UdyLDGJHF4ByLA69cGzg&usqp=CAU" alt=""> </div>
+ 
+
+       <div class="position"> 
+           <img class= "dot" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5UQ9O-pqOAfrcKo01UmnIQOzapUVxqwoUwA&usqp=CAU" alt="">
+       </div>
+
+       <div class="position">
+           <img class= "pro" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC3beVxoHA2fIXTeHce827pD8CIJW6_-IOew&usqp=CAU" alt="">
+       </div>
+</div>
+    <div id="main">
+
+    <div id="videos"></div>
+    
+    <div id="des"></div>
+</div>
+
+</body>
+</html>
+
+<script>
+    
+    let videos = document.getElementById("videos")
+    let des = document.getElementById("des")
+    async function gg() {
+        var amy = document.getElementById("query").value
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${amy}&key=AIzaSyBA8p-JRGmsTHbTGLur9oSulHW4VNBYZZA`)
+                
+        let data = await res.json();
+        console.log(data.items);
+
+       appendVideo(data.items)
+       appendDescription(data.items)
+    }
+    gg()
+
+    function appendVideo(Video_data) {
+        videos.innerHTML = null;
+        Video_data.forEach(({ id: { videoId } }) => {
+         
+            let div = document.createElement("div");
+
+            div.innerHTML = `<iframe width="90%" height="300px" src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+            
+           
+            videos.append(div)
+        });
+    
+    }
+
+    function appendDescription(Video_data) {
+        let detail = document.createElement("div");
+        des.innerHTML = null;
+        // des.innerHTML = null;
+        Video_data.forEach(({ snippet: { description,title,channelTitle,publishedAt } }) => {
+            let p = document.createElement("p")
+            p.innerHTML = description;
+
+            let titles = document.createElement("h2")
+            titles.innerHTML = title;
+
+            let channel = document.createElement("h4")
+            channel.innerHTML = channelTitle;
+            
+
+            let publish = document.createElement("h5");
+            publish.innerHTML ="Punlished At :-"+ publishedAt;
+
+            let line = document.createElement("hr")
+            detail.append(titles,channel,publish,p,line)
+            des.append(detail);
+        });
+}
+</script>

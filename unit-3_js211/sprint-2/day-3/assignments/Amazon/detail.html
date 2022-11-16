@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  
+</style>
+<body onload="detail()">
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    detail =()=> {
+        let el = JSON.parse(localStorage.getItem("detail"));
+
+        
+            let box = document.createElement("div");
+
+            let imgDiv = document.createElement("div");
+            
+
+            let image = document.createElement("img");
+            image.src = el.Poster;
+
+            let p1 = document.createElement("p");
+            p1.innerText = `Title: ${el.Title}`;
+
+            let p2 = document.createElement("p");
+            p2.innerText = `Type: ${el.Type}`;
+
+            let p3 = document.createElement("p");
+            p3.innerText = `Year: ${el.Year}`;
+
+            let p4 = document.createElement("p");
+            p4.innerText = `imdbID: ${el.imdbID}`;
+  
+
+            imgDiv.append(image);
+            imgDiv.setAttribute("class", "movie")
+            box.append(imgDiv, p1,p2,p3,p4);
+
+            document.querySelector("#container").append(box);
+      
+    }
+</script>

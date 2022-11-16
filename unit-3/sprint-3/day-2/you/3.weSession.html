@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    class Stack {
+        constructor(){
+            this.length = 0;
+            this.stack = [];
+        }
+
+
+        push(...arr){  // ...arr is spread operator
+            // console.log(arr)
+            arr.forEach((el) => {
+                // this.stack.push(el)
+                let index = this.length
+                this.stack[index] = el;
+                this.length++;
+            })
+        }
+
+
+        remove (){
+            let index = this.length-1;
+            delete this.stack[index];
+            this.stack.length --;
+            this.length--;
+        }
+
+
+        peek(){
+            return this.stack[this.length-1];
+        }
+
+
+        isEmpty(){
+            let value = this.length ===0 ? "Stack is Empty" : "Stack is full";
+            console.log(value)
+        }
+    }
+
+    let s1 = new Stack();
+    
+    s1.isEmpty();
+
+    s1.push(1,2,3,4,5,6,7);
+    s1.remove();
+    console.log(s1)
+
+    let last = s1.peek();
+    console.log(last);
+
+    s1.isEmpty();
+    
+</script>

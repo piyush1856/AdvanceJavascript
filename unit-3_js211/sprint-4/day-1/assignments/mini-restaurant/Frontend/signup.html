@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/navbar.css">
+    <link rel="stylesheet" href="./style/signup.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <form onsubmit="signupform()">
+      <h2>Sign-Up</h2>
+        <label for="name">Name</label><br />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Enter Username"
+        /><br />
+        <label for="email">Email</label><br />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter email address"
+        /><br />
+        <label for="password">Password</label><br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="********"
+        /><br />
+        <label for="uname">Username</label><br />
+        <input
+          type="text"
+          name="uname"
+          id="uname"
+          placeholder="Enter Username"
+        /><br />
+        <label for="uname">Mobile</label><br />
+        <input
+          type="Number"
+          name=""
+          id="mobile"
+          placeholder="Enter Mobile Number"
+        /><br />
+        <label for="uname">Description</label><br />
+        <select name="" id="description">
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+        </select>
+        <!-- <input
+          type="text"
+          name=""
+          id="description"
+          placeholder="Description" -->
+        <!-- /><br /> -->
+        <input type="submit" value="SignUp" />
+      </form>
+</body>
+</html>
+<script src="./script/signup.js" type="module"></script>
+<script src="../component/signlogin.js"></script>

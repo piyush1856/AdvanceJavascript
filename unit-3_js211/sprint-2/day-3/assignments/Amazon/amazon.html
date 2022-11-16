@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    input{
+        width: 500px;
+        height: 50px;
+    }
+    #container{
+        width: 505px;
+        height: 500px;
+        border: 1px solid rebeccapurple;
+        overflow: scroll;
+    }
+    .movie{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+    }
+    .movie img{
+        width: 100px;
+        height: 100px;
+    }
+    .box img {
+        width: 500px;
+        height: 200px;
+    }
+    /* .box{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    } */
+</style>
+<body>
+    <h1>Amazon Prime Videos</h1>
+    <input oninput="debounce(getData, 1000)" type="text" id="query" placeholder="MOVIE NAME">
+    <button onclick="getData()" id="btn">Search</button>
+
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    
+
+    getData =  async () => {
+        let query = document.getElementById("query").value;
+        let url =`http://www.omdbapi.com/?i=tt3896198&apikey=1487ce35&s=${query}`;
+
+        try {
+            let res = await fetch(url);
+            let data = await res.json();
+            console.log(data.Search)
+            data=data.Search
+            append(data)
+
+        } catch (err) {
+            
+            notFound(err);
+        }
+    }
+
+    function append(data) {
+    let container = document.querySelector("#container");
+    container.innerHTML = null;
+
+
+
+        data.forEach(function (el) {
+            let box = document.createElement("div");
+
+            let imgDiv = document.createElement("div");
+            imgDiv.class = "imgdiv";
+
+            let image = document.createElement("img");
+            image.src = el.Poster;
+
+            let p1 = document.createElement("p");
+            p1.innerText = `Title: ${el.Title}`;
+
+            // let p2 = document.createElement("p");
+            // p2.innerText = `Type: ${el.Type}`;
+
+            // let p3 = document.createElement("p");
+            // p3.innerText = `Year: ${el.Year}`;
+
+            // let p4 = document.createElement("p");
+            // p4.innerText = `imdbID: ${el.imdbID}`;
+  
+
+            imgDiv.append(image);
+            imgDiv.setAttribute("class", "movie")
+            box.append(imgDiv, p1);
+            box.onclick = () => {
+              detail(el);
+            }
+
+            document.querySelector("#container").append(box);
+        });
+        
+    }
+    function notFound(err) {
+  
+        let box = document.createElement("div");
+        box.setAttribute("class" ,"box")
+        let imgDiv = document.createElement("div");
+        imgDiv.class = "errordiv";
+        let img = document.createElement("img");
+        img.src =
+        "https://cdn.dribbble.com/users/724182/screenshots/8587099/media/ef86c4bf895b58c47d1b353eabecad01.gif";
+       
+
+        box.append(img);
+
+        document.querySelector("#container").append(box);
+    }
+    let id;
+    function debounce(func,delay){
+        if (id) {
+            clearTimeout(id);
+        }
+        id = setTimeout(function () {
+            func();
+        }, delay);
+    }
+    
+    function detail(el){
+        localStorage.setItem("detail", JSON.stringify(el));
+        window.location.href = "detail.html";
+    }
+   
+</script>

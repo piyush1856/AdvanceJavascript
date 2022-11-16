@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    //arrow function
+
+    let arrow = () => {
+        console.log(this)
+    }
+    arrow()
+    //in case of arrow function it doesn't have own this binding so it will alwiys refer to global object
+
+    let arrow2 = () => {
+        this.a = "Piyush"
+    }
+    arrow2()
+    console.log(a)
+    //here a will avaliable in widow object
+
+    //default parameter
+    function add (a=0,b=0) {
+        return a+b
+    }
+    console.log(add(10))
+    // if user doesn't pass anything what default value you want to take.
+
+
+/////////////////////////////////////////////////////////////////////////////
+    //for of loop
+    let arr = [1,2,3,4]
+    for(let el of arr){
+        console.log(el)
+    }
+
+
+//////////////////////////////////////////////////////////////////
+    //destructuring
+    let person = {
+        name : "Atal",
+        address : {
+            street : "abc",
+            lane:34,
+            pin:234567
+        },
+        mob: 9876544321
+    };
+
+    let pin_value = person.address.pin;
+    console.log(pin_value)
+
+    //or, destructuring
+    let{
+        address:{pin,lane},mob
+    } = person;
+
+    console.log(pin)
+    console.log(lane)
+    console.log(mob)
+
+    //renaming
+    let {mob:moile_number} = person
+    console.log(moile_number)
+
+//////////////////////////////////////////////////////////////
+
+    //rest and spread operator
+
+    function rest(a,...b){
+        console.log(a)
+        console.log(b)
+    }
+    rest(1,2,3,4);
+    //whatever inside the rest(...) , it will come inside the array
+    //rest at first position inde parameter is not valid until it is single parameter
+
+
+    //spread
+    let arr1 = [1,2,3,4]
+    let arr2 = [5,6,7,8,9,]
+    console.log([...arr1,...arr2])
+
+    let str ="piyush";
+    console.log([...str]) // because in memory string is also stored like array
+    //so we can spread it.
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    
+
+
+
+
+
+
+
+
+</script>

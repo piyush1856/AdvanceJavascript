@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .book{
+        border: 1px solid red;
+        
+    }
+    #container{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        gap: 10px;
+    }
+</style>
+<body onload="getData()">
+    <button onclick="sort()">Sort By No. Of Comments</button>
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    let allPromise=[];
+    let arrData =[];
+
+    for(let i=1;i<=5;i++){
+        const url = `https://jsonmock.hackerrank.com/api/articles?page=${i}`;
+        let Promise = fetch(url).then((res) => res.json())
+        allPromise.push(Promise)
+    }
+
+    getData =  async () => {
+        let data = await Promise.all(allPromise);
+        console.log(data)
+        let result = [];
+
+        for(let i=0;i<data.length;i++){
+            for(let j=0;j<data[i].data.length;j++){
+                result.push(data[i].data[j]);
+            }
+            
+        }
+        arrData=result;
+        console.log(result)
+        append(result)
+
+       
+    }
+
+    function append(data) {
+    let container = document.querySelector("#container");
+    container.innerHTML = null;
+
+
+
+        data.forEach(function (el) {
+            let box = document.createElement("div");
+
+
+
+            let p1 = document.createElement("p");
+            p1.innerText = `Title: ${el.title}`;
+
+            let p2 = document.createElement("p");
+            p2.innerText = `NO.Of Comments: ${Number(el.num_comments)}`;
+
+            let p3 = document.createElement("p");
+            p3.innerText = `Author: ${el.author}`;
+
+            // let p4 = document.createElement("p");
+            // p4.innerText = `imdbID: ${el.imdbID}`;
+  
+            box.append(p1,p3,p2);
+            box.setAttribute("class","book")
+            document.querySelector("#container").append(box);
+        });
+        
+    }
+
+    sort = () => {
+        arrData.sort(function (a,b){
+            return a.num_comments - b.num_comments
+        })
+        append(arrData)
+    }
+</script>

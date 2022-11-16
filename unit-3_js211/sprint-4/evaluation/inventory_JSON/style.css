@@ -1,0 +1,86 @@
+/* Give styling here  */
+
+#navbar{
+    width: 99%;
+    height: 2cm;
+    border: 1px solid blue;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+}
+#main_container{
+    width: 99%;
+    height: auto;
+    border: 1px solid blue;
+    margin: auto;
+    display: flex;
+}
+#side_bar{
+    width: 20%;
+    height: auto;
+    border: 1px solid blue;
+    text-align: center;
+}
+input{
+    width: 80%;
+    height: 25px;
+    display: flex;
+    margin: auto;
+    margin-bottom: 15px;
+}
+#side_bar > button{
+    width: 80%;
+    height: 30px;
+    display: flex;
+    margin: auto;
+    margin-bottom: 15px;
+    font-size: 20px;
+    justify-content: center;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: bisque;
+
+}
+button:hover{
+    background-color: aliceblue;
+}
+#container{
+    display: grid;
+    width: 75%;
+    height: auto;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: auto;
+    gap: 15px;
+    margin: auto;
+}
+
+img{
+    width: 98%;
+    height: 50%;
+}
+.item{
+    border: 1px solid red;
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.button{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    
+}
+.button>button{
+    background-color: bisque;
+    border-radius: 10px;
+    height: 30px;
+    font-size: 18px;
+}
+.button>button:hover{
+    background-color: aliceblue;
+}
+

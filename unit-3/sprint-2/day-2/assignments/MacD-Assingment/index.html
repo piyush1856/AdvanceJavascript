@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    form{
+        display: flex;
+        width: 600px;
+        height: 100px;
+        margin: 20px;
+        padding: 10px;
+    }
+    form div{
+        flex-direction: row;
+        margin: 20px;
+    }
+    img{
+        width: 80px;
+        height: 80px;
+    }
+</style>
+<body>
+    <div>
+        <form action="" id="food">
+            <div>
+                <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/5:4/w_3129,h_2503,c_limit/Smashburger-recipe-120219.jpg" alt="">
+                <br>
+                <input class="checkbox" type="checkbox" id="burger" name="Burger" value="Burger">
+                <label for="burger">Burger</label>
+            </div>
+
+            <div>
+                <img src="https://www.acouplecooks.com/wp-content/uploads/2020/09/Latte-Art-067s.jpg" alt="">
+                <br>
+                <input class="checkbox" type="checkbox" id="latte" name="latte" value="Latte">
+                <label for="latte">Latte</label>
+            </div>
+
+            <div id="sandwich_div">
+                <img src="https://insanelygoodrecipes.com/wp-content/uploads/2021/03/Homemade-Grilled-Cheese-Sandwich-with-Tomatoes-500x500.png" alt="">
+                <br>
+                <input class="checkbox" type="checkbox" id="sandwich" name="sandwich" value="Sandwich">
+                <label for="sandwich">Sandwich</label>
+            </div>
+
+            <div>
+                <img src="https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F11c24da45fb9daad920178c3ff5541ed.png" alt="">
+                <br>
+                <input class="checkbox" type="checkbox" id="bigmac" name="bigmac" value="bigmac">
+                <label for="bigmac">Big_Mac</label>
+            </div>
+
+            <input id="order_food" type="submit" value="order">
+        </form>
+    </div>
+
+    <div id="container"></div>
+    
+</body>
+</html>
+
+<script>
+    
+    var arr = []
+
+    var btn = document.getElementById("order_food");
+    btn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        getitems()
+    })
+
+    function getitems() {
+        var checkboxes = document.querySelectorAll(".checkbox")
+
+        for (var check of checkboxes) {
+            //console.log(check)
+
+            // we are checking if the checkbox is ticked 
+            if (check.checked == true) {
+                //console.log(check)
+                let target_div = check.parentElement
+                let img = target_div.firstElementChild
+                
+                //console.log(img.src)
+                // we r pushing the value of the checked box
+                arr.push(img.src , check.value)
+            }
+        }
+    document.getElementById("container").innerHTML =" "
+    
+        return new Promise(function (resolve, reject) {
+
+            resolve(setTimeout(() => {
+                display_items()
+                alert("order is ready")
+            }, 5000))
+        })
+    }
+
+    function display_items() {
+        //console.log(arr)
+
+        var dom = document.getElementById("container")
+        document.getElementById("container").innerHTML =" "
+        
+
+        for (var i = 0; i < arr.length; i++) {
+
+           if(i%2==0){
+               var img= document.createElement("img")
+               img.src = arr[i]
+               dom.append(img)
+           }
+           else {
+               var p = document.createElement("p")
+               p.innerText = arr[i]
+               dom.append(p)
+           }
+           
+        }
+
+    }
+
+</script>

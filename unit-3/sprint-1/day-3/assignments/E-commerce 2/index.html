@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #heading{
+        display: flex;
+        justify-content: space-between;
+        padding-right: 20cm;
+    }
+    #heading>a > p {
+        font-weight: bold;
+        font-size: 20px;
+        margin: 30px;
+        color: rgb(54, 54, 54);
+        margin-bottom: 80px;
+    }
+    #heading >a > p:hover {
+        cursor: pointer;
+        color: red;
+    }
+    #counter{
+        font-weight: bold;
+        font-size: 20px;
+        margin: 30px;
+        color: rgb(54, 54, 54);
+        margin-bottom: 80px;
+    }
+    #container{
+        display: grid;
+        width: 90%;
+        grid-template-columns: repeat(4,1fr);
+        gap: 30px 50px;
+        margin: auto;
+    }
+    #container>div{
+        padding: 10px;
+        border: 1px solid;
+    }   
+    .product>img{
+        width: 100%;
+    }
+    h1{
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .btndiv{
+        display: flex;
+        justify-content: space-between;
+    }
+    .btndiv>button{
+        font-size: 15px;
+        padding: 8px;
+        border: 1px solid transparent;
+        margin: 10px 0;
+    }
+
+    .btndiv>button:hover{
+        cursor: pointer;
+        background-color: rgb(207, 207, 207);
+    }
+
+</style>
+<body>
+    <div id="heading">
+        <a href="admin.html"><p id="formsheet"> 
+        Back to admin
+        </p></a>
+
+        <div id="counter">
+        </div>
+    </div>
+
+    <h1>Products</h1>
+
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    let ProductData = JSON.parse(localStorage.getItem("Products")) || [];
+
+    ProductData.forEach(function (el,index) {
+
+        let box = document.createElement("div");
+        box.setAttribute("class","product")
+
+        let pic = document.createElement("img");
+        pic.setAttribute("src", el.image);
+
+        let name = document.createElement("p");
+        name.innerText = el.name;
+
+        let category = document.createElement("p");
+        category.innerText = el.category;
+
+        let gender = document.createElement("p");
+        gender.innerText = el.Gender;
+
+        let price = document.createElement("p");
+        price.innerText = `₹ ${el.price}`;
+
+
+        let btndiv = document.createElement("div");
+        btndiv.setAttribute("class","btndiv")
+
+        let btn = document.createElement("button");
+        btn.innerText = "Remove";
+        btn.setAttribute("id","remove")
+  
+        btn.addEventListener("click", function () {
+            del(el,index);
+        });
+  
+        let btnsold = document.createElement("button");
+        btnsold.style.backgroundColor="green"
+        btnsold.innerText = false;
+        btnsold.setAttribute("id","sold")
+        btnsold.addEventListener("click", function () {
+
+            let value=el.sold;
+
+            if(value==false){
+                el.sold=true;
+                btnsold.style.backgroundColor="red"
+                btnsold.innerText="true"
+            }else{
+                el.sold=false
+                btnsold.style.backgroundColor="green"
+                btnsold.innerText = "false";
+            }
+        });
+
+        btndiv.append(btn,btnsold)
+        box.append(pic, name,category,gender, price,btndiv);
+        document.querySelector("#container").append(box);
+    });
+
+    function del(el, index) {
+        ProductData.splice(index, 1);
+        localStorage.setItem("Products", JSON.stringify(ProductData));
+        window.location.reload();
+
+        
+    }
+
+
+    let counter=document.querySelector("#counter");
+    counter.innerText=`No.of items: ${ProductData.length}`
+</script>

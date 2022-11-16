@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    class company{
+        constructor(Seats,pref){
+        this.brand="TATA motors",
+        this.material="PDP",
+        this.engine="turbocharged",
+        this.type=pref,
+        this.EngineManufcaturer="Revotron",
+        this.leatherCompany="Benecke-Kaliko",
+        this.totalSeats=Seats,
+        this.manufacturedCountry="INDIA"
+        }
+
+        fueltank(lt){
+            this.type=`${lt} liters`
+        }
+    }
+
+    class Nexon extends company{
+        
+        constructor(Seats,pref,lt,name){
+            super(Seats,pref);
+            this.name=name;
+            this.type=`${lt} liters`;
+        }
+    }
+
+    
+
+    let myNexon=new Nexon(4,"Petrol",5,"Nexon")
+    let myRexa=new Nexon(6,"Diesel",5,"Rexa")
+
+
+    console.log(myNexon)
+    console.log(myRexa)
+</script>

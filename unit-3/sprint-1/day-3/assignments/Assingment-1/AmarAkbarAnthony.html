@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    let amar = {
+        name : "Amar",
+        skill : "Singer",
+        borrow : function(){
+            console.log(`Amar borrowing ${this.skill} skills from ${this.name} to impress people`)
+        }
+    }
+
+    let akbar = {
+        name : "Akbar",
+        skill : "Chef",
+        borrow : function(){
+            console.log(`Akbar borrowing ${this.skill} skills from ${this.name} to impress people`)
+        }
+    }
+    
+    let anthony = {
+        name : "Anthony",
+        skill : "Magician",
+        borrow : function(){
+            console.log(`Anthony borrowing ${this.skill} skills from ${this.name} to impress people`)
+        }
+    }
+
+  
+
+    amar.borrow.call(akbar)
+    amar.borrow.call(anthony)
+    akbar.borrow.call(amar)
+    akbar.borrow.call(anthony)
+    anthony.borrow.call(amar)
+    anthony.borrow.call(akbar)
+
+
+    
+    
+    
+    
+    // let skill = {
+    //     borrow : function(name){
+    //         console.log(`${name} borrowing ${this.skill} skills from ${this.name} to impress people`)
+    //     }
+    // }
+
+    
+   
+
+    // skill.borrow.call(akbar, "Amar")
+    // skill.borrow.call(anthony, "Amar")
+    // skill.borrow.call(amar, "Akbar")
+    // skill.borrow.call(anthony, "Akbar")
+    // skill.borrow.call(amar, "Anthony")
+    // skill.borrow.call(akbar, "Anthony")
+
+
+</script>

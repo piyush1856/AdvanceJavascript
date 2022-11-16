@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    // everything in JS is object
+
+    // object.create()
+
+    let nikeProduct = {
+        brand : "nike",
+        seller : "flipkart",
+
+    }
+    // blueprint
+
+    // let p1 = {
+    //     brand : "nike",
+    //     seller : "flipkart",
+    //     price : 2000
+    // }
+    // let p2 = {
+    //     brand : "nike",
+    //     seller : "flipkart",
+    //     price : 3000
+    // }
+
+    // this is not a good artitecture
+
+    let p1 = Object.create(nikeProduct)
+    //console.log("p1:", p1) //it will show an empty obj but values are present in proto
+    //console.log("p1:", p1.brand) // it will directly take the value
+
+    let p2 = Object.create(nikeProduct)
+
+    // suppose if you want to change the seller of of 1M product of nike from flipkart to amazon
+    // you just have to change it once in blueprint
+
+    // you can also add any data for a specific obj
+
+
+
+</script>

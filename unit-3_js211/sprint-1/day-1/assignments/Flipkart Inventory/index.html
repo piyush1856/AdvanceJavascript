@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <style>
+    img{
+      width: 300px;
+      height: 300px;
+    }
+    #navbar{
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: end;
+      border: 1px solid blue;
+      margin-bottom: 25px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    #form {
+        margin: 0 auto;
+        margin-top: 50px;
+        width: 30%;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 30px;
+    }
+  </style>
+  <body>
+    <div id="navbar">
+      <a href="./index.html" style="text-decoration: none;" id="cart">Admin</a>
+      <a href="./trouser.html" style="text-decoration: none;" id="cart">Trouser</a>
+      <a href="./t-shirt.html" style="text-decoration: none;" id="cart">T-shirt</a>
+      <a href="./shirt.html" style="text-decoration: none;" id="cart">Shirt</a>
+    </div>
+
+    <form id="form">
+        <input type="text" placeholder="Product Name" id="name">
+        <br>
+        <select name="" id="category">
+            <option value=null>Select Category</option>
+            <option value="trouser">Trouser</option>
+            <option value="tshirt">T-shirt</option>
+            <option value="shirt">Shirt</option>
+        </select>
+        <br>
+        <input type="number" placeholder="Price" id="price">
+        <br>
+        <input type="text" placeholder="image" id="image">
+        <br>
+        <input type="submit" id="submit">
+    </form>
+  </body>
+</html>
+
+<script>
+document.querySelector("form").addEventListener("submit", submit)
+
+function Product (n,c,p,i){
+    this.name =n;
+    this.category =c;
+    this.price =p;
+    this.image =i;
+};
+
+
+function submit(){
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let category = document.getElementById("category").value;
+    let price = document.getElementById("price").value;
+    let image = document.getElementById("image").value;
+
+
+    let p = new Product(name,category,price,image)
+    console.log(p)
+
+
+    if(category == "trouser"){
+        let trouser = JSON.parse(localStorage.getItem("trouser")) || [];
+
+        trouser.push(p);
+        localStorage.setItem("trouser",JSON.stringify(trouser));
+    }else if(category == "tshirt"){
+        let tshirt = JSON.parse(localStorage.getItem("tshirt")) || [];
+
+        tshirt.push(p);
+        localStorage.setItem("tshirt",JSON.stringify(tshirt));
+    }else if(category == "shirt"){
+        let shirt = JSON.parse(localStorage.getItem("shirt")) || [];
+
+        shirt.push(p);
+        localStorage.setItem("shirt",JSON.stringify(shirt));
+    }
+    
+
+    document.getElementById("name").value=null;
+    document.getElementById("category").value=null;
+    document.getElementById("price").value=null;
+    document.getElementById("image").value=null;
+};
+</script>

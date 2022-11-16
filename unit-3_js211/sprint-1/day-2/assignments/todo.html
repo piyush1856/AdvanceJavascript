@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .mini{
+        display: flex;
+        width: 80%;
+        height: 30px;
+        border: 1px solid pink;
+        margin-top: 10px;
+    }
+    #container{
+        margin-top: 20px;
+        width: 80%;
+        height: auto;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .name{
+        margin-right: 30%;
+        margin: auto;
+    }
+</style>
+<body>
+    <h1>TODO LIST</h1>
+    <input type="text" placeholder="Enter Task" id="todo">
+    <input type="submit" value="Submit" onclick="submit()">
+
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    function Product (n){
+        this.todo =n;
+        
+    };
+
+    submit = () =>{
+        let todo = document.getElementById("todo").value;
+        
+        let task = new Product(todo);
+
+        let data = JSON.parse(localStorage.getItem("data")) || [];
+
+        data.push(task);
+        localStorage.setItem("data",JSON.stringify(data));
+        append(data)
+        document.getElementById("todo").value=null;
+    }
+
+    let data = JSON.parse(localStorage.getItem("data"));
+
+    let append = (data) => {
+       
+        let con = document.getElementById("container");
+        con.innerHTML=null;
+        data.forEach((el, index) => {
+            
+
+            let todo = document.createElement("p");
+            todo.innerText=el.todo;
+            todo.setAttribute("class", "name")
+         
+
+            let button1 = document.createElement("button");
+            button1.innerText ="Remove";
+
+            button1.onclick = () => {
+                removeButton(index);
+            }
+
+            let button2 = document.createElement("button");
+            button2.innerText ="Mark As Complete";
+
+            button2.onclick = () => {
+                complete(el,index);
+            }
+
+            let div = document.createElement("div");
+            div.setAttribute("class", "mini")
+            div.append(todo,button1,button2);
+            con.append(div);
+        })
+    };
+
+    
+    let removeButton = (index) =>{
+        let data = JSON.parse(localStorage.getItem("data"));
+        data.splice(index,1);
+        localStorage.setItem("data",JSON.stringify(data))
+        //append(data);
+        event.target.parentElement.remove()
+        
+    }
+
+    let complete = (el,index) => {
+
+       event.target.parentElement.style.border = "2px solid green";
+
+       
+       
+    }
+</script>

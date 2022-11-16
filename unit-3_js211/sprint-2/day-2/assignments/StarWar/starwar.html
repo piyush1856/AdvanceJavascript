@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        width: 505px;
+        height: 500px;
+        border: 1px solid rebeccapurple;
+        overflow: scroll;
+    }
+    input{
+        width: 500px;
+        height: 50px;
+    }
+    .box{
+        width: 100%;
+        height: 2cm;
+        display: flex;
+        border: 1px solid red;
+        justify-content: space-evenly;
+    }
+</style>
+<body>
+    <h1>Starwars</h1>
+    <input  oninput="debounce(getData, 1000)" type="text" id="query" placeholder="MOVIE NAME">
+    <button onclick="getData()" id="btn">Search</button>
+    <!-- oninput="debounce(getData, 1000)" -->
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    getData =  async () => {
+        let query = document.getElementById("query").value;
+        let url =`https://swapi.dev/api/people/?search=${query}`;
+
+        let res = await fetch(url);
+        let data = await res.json();
+        console.log(data.results)
+        data=data.results
+        append(data);
+    }
+
+    function append(data) {
+        let container = document.querySelector("#container");
+        container.innerHTML = null;
+
+
+
+        data.forEach(function (el) {
+            let box = document.createElement("div");
+            box.setAttribute("class", "box")
+            let p1 = document.createElement("p");
+            p1.innerText = el.name;
+
+            let p2 = document.createElement("p");
+            p2.innerText = el.gender;
+
+            let p3 = document.createElement("p");
+            p3.innerText = el.birth_year;
+
+            // let p4 = document.createElement("p");
+            // p4.innerText = `imdbID: ${el.imdbID}`;
+  
+
+
+            box.append(p1,p2,p3);
+            box.onclick = () => {
+              detail(el);
+            }
+
+            document.querySelector("#container").append(box);
+        });
+        
+    }
+    let id;
+    function debounce(func,delay){
+        if (id) {
+            clearTimeout(id);
+        }
+        id = setTimeout(function () {
+            func();
+        }, delay);
+    }
+
+    function detail(el){
+        localStorage.setItem("starwar", JSON.stringify(el));
+        window.location.href = "detail.html";
+    }
+</script>

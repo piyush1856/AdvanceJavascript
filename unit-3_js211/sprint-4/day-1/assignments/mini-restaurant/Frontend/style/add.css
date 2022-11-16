@@ -1,0 +1,62 @@
+#contain{
+    width: 85%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 30px;
+    justify-content: center;
+    /* border: 1px solid red; */
+    margin: auto;
+}
+
+#AddProd ,#RemoveProd ,#updateProd{
+    box-sizing: border-box;
+    width: 70%;
+    margin: auto;
+    /* border: 1px solid red; */
+    padding: 45px;
+    margin-top: 90px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 8px;
+  }
+
+  #AddProd label,#RemoveProd label ,#updateProd label{
+    display: block;
+    margin-top: 25px;
+    margin-bottom: -10px;
+    /* border: 1px solid red; */
+  }
+
+  #AddProd>button,#RemoveProd>button ,#updateProd>button{
+    width: 100%;
+    border: 1px solid transparent;
+    margin-top: 45px;
+    padding: 10px;
+    border-radius: 10px;
+    color: grey;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 35px;
+  }
+  #AddProd>button:hover ,#updateProd>button:hover {
+    background-color: darkgray;
+    color: white;
+  }
+
+  #AddProd input,#RemoveProd input,#updateProd input {
+    width: 95%;
+    border: thin solid rgb(204, 204, 204);
+    border-radius: 4px;
+    padding: 8px;
+  }
+
+  #AddProd>h3 ,#RemoveProd>h3, #updateProd>h3{
+    margin: auto;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+
+  #RemoveProd>button:hover{
+    background-color: red;
+    color: white;
+  }

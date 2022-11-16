@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 1. Create your custom map method (myMap), which will work exactly similar to Array.map().
+    let arr1 = [1,2,3];
+    let newArr1 =[];
+
+    Array.prototype.myMap = function(func){
+        for(let i=0;i<this.length;i++){
+            let element = this[i]
+            let x=func(element)
+            // console.log(x)
+            newArr1.push(x)
+        }
+        return newArr1
+    }
+
+    let x= arr1.myMap(function(x){
+        return x*2;
+    })
+    console.log(x);
+    
+
+
+    // 2. Create your custom forEach method (myForEach), which will work exactly similar to Array.forEach().
+    let arr2 =[1,2,3]
+    Array.prototype.myForEach=function(func){
+        for(let i=0;i<this.length;i++){
+            let el=this[i];
+            let x=func(el);
+            console.log(x)
+        }
+
+    }
+
+    let y=arr2.myForEach(function(x){
+     return x*2;
+    })
+
+
+
+    // 3. Create your custom filter method (myFilter), which will work exactly similar to Array.filter().
+    let arr3=[1,2,3];
+
+    Array.prototype.myFilter=function(func){
+        let newArr3=[];
+        for(let i=0;i<this.length;i++){
+            let el=this[i];
+            let x=func(el);
+
+            if(x==true){
+                newArr3.push(this[i])
+            }
+            
+        }
+        return newArr3;
+    }
+
+    let z=arr3.myFilter(function(x){
+        return x%2==0;
+    })
+    console.log(z)
+
+
+
+    // 4. Create your custom reduce method (myReduce), which will work exactly similar to Array.reduce().
+    let arr4 = [1,2,3,4];
+    
+    Array.prototype.myReduce = function(func,acc){
+        acc = 2
+        let sum =0;
+        for(let i=0;i<this.length;i++){
+            let el = this[i];
+            let x=func(el)
+            sum = sum +x;
+        }
+        return sum+acc;
+    }
+    let w= arr4.myReduce(function(x,acc){
+        return x
+    })
+
+    console.log(w)
+</script>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Counter</h1>
+    <h2 id="value"></h2>
+    <button id="add_btn">Add</button>
+    <button id="sub_btn">Subtract</button>
+</body>
+</html>
+
+<script>
+    class Counter{
+        //private
+        #value;
+        #onupdateCallback;
+        constructor(inti){
+            this.#value = inti;
+        }
+
+        get value(){
+            return this.#value;
+        }
+        //get it will help to access the private value
+        //you can set/get any name but you have to access with same name
+        set value(newValue){
+            this.#value = newValue;
+        }
+        //it might look like function but it is not a function
+
+        set callback(cb){
+            this.#onupdateCallback = cb;
+        }
+        get callback(){
+            return this.#onupdateCallback;
+        }
+    }
+
+    let counter = new Counter(0)
+    // counter.value =2;
+    // //this will go to setter
+    // console.log(counter.value)
+    
+
+    window.addEventListener("load", ()=> {
+        const value = document.getElementById("value");
+        value.textContent= counter.value;
+        counter.callback = renderDom;
+
+
+        const btn = document.getElementById("add_btn");
+        btn.addEventListener("click", () => {
+            counter.value++;
+            console.log(counter)
+            // value.textContent= counter.value;
+
+            counter.callback();
+        })
+
+        // const btn2 = document.getElementById("sub_btn");
+        // btn2.addEventListener("click", () => {
+        //     counter.value--;
+        //     console.log(counter)
+        //     value.textContent= counter.value;
+        // })
+    });
+
+    function renderDom(){
+        value.textContent = counter.value;
+    };
+
+</script>

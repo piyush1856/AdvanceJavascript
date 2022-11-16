@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="getLocation()">
+    <input type="text" id="query" placeholder="CITY NAME">
+    <button onclick="getData()">Search</button>
+    <div id="container"></div>
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="600" height="500" id="gmap_canvas"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+            </iframe>
+            <style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">google embed</a>
+            <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+</body>
+</html>
+
+<script>
+    // https://api.openweathermap.org/data/2.5/weather?q=chandigarh&appid=7ce438edcd6bf08b73ee44229463df71
+
+    function getData(){
+        let city = document.getElementById("query").value;
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=7ce438edcd6bf08b73ee44229463df71`;
+
+       fetch(url)
+        .then(function(res){
+            return res.json();
+        }).then(function(res){
+            console.log(res)
+            append(res);
+        }).catch(function(err){
+            console.log(err);
+        })
+    }
+
+    //"https://maps.google.com/maps?q=pune&t=&z=13&ie=UTF8&iwloc=&output=embed"
+
+    function append(data){
+        let url = `https://maps.google.com/maps?q=${data.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`
+        let container = document.getElementById("container");
+        container.innerHTML = null;
+
+        let h2 = document.createElement("h2");
+        h2.innerText = data.name;
+
+        let temp = document.createElement("p");
+        temp.innerText = `Temp :- ${data.main.temp}`;
+
+        let min_temp = document.createElement("p");
+        min_temp.innerText = `MIN. Temp :- ${data.main.temp_min}`;
+
+        let max_temp = document.createElement("p");
+        max_temp.innerText = `MAX. Temp :- ${data.main.temp_max}`;
+
+        let iframe = document.getElementById("gmap_canvas");
+        iframe.src = url;
+
+        container.append(h2,temp,min_temp,max_temp)
+    }
+
+    function getLocation(){
+        navigator.geolocation.getCurrentPosition(success);
+
+        function success(pos) {
+            const crd = pos.coords;
+
+            console.log('Your current position is:');
+            console.log(`Latitude : ${crd.latitude}`);
+            console.log(`Longitude: ${crd.longitude}`);
+            console.log(`More or less ${crd.accuracy} meters.`);
+            getWeatherOnLocation(crd.latitude, crd.longitude);
+        }
+       
+    }
+
+    // getLocation();
+
+    // let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5881c474bc5289105d70aa1b5`;
+
+    function getWeatherOnLocation(lat, lon){
+    
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5881c474bc5289105d70aa1b5`;
+
+       fetch(url)
+        .then(function(res){
+            return res.json();
+        }).then(function(res){
+            console.log(res)
+            append(res);
+        }).catch(function(err){
+            console.log(err);
+        })
+    }
+</script>

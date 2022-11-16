@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    //let str = "rishav" //JS doesn't know this
+    //let str2 = new String("Rishav") //this how JS works internally
+
+    // everthing in JS is object
+
+    // Call, Apply, Bind
+    let bedroom = {
+        name : " Master bedroom",
+    };
+
+    let kitchen = {
+        name:"Kitchen",
+        cookFood: function(order){
+            console.log(`Serving ${order} in ${this.name}`);
+        },
+    };
+    kitchen.cookFood.call(bedroom, "Maggie")
+    // .call() takes two arguments, one for this(obj) also owner other for actual function patameter 
+    // you cannot pass two owner
+
+    // let bedroom = {
+    //     name : "bedroom",
+    // }; // it will not work because it is below
+
+
+
+</script>

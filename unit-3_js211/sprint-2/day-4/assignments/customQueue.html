@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+     class Queue{
+        constructor(){
+            this.length =0;
+            this.queue = [];
+        }
+
+        enQueue(el){
+            this.queue.push(el);
+            this.length++;
+        }
+
+        deQueue(){
+            this.queue.shift();
+            this.length--;
+        }
+        enQueueThree(a,b,c){
+            this.queue.push(a);
+            this.length++;
+
+            this.queue.push(b);
+            this.length++;
+
+            this.queue.push(c);
+            this.length++;
+        }
+        deQueueThree(){
+            this.queue.shift();
+            this.length--;
+
+            this.queue.shift();
+            this.length--;
+
+            this.queue.shift();
+            this.length--;
+        }
+    }
+
+    let queue = new Queue();
+    queue.enQueue(1);
+    queue.enQueue(2);
+    queue.deQueue()
+    queue.enQueueThree(5,6,7)
+    queue.deQueueThree()
+    console.log(queue);
+</script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <input type="text" placeholder="Name">
+    <button onclick="submit()">Submit</button> -->
+    <form class="form">
+        <input name=" name " type="text" id="name" placeholder="Enter your Name">
+        <input name=" age " type="text" id="age" placeholder="Enter your Age">
+        <button onclick="register()">Register</button>
+    </form>
+    <h2 id="vaccine"></h2>
+    <h2 id="que"></h2>
+</body>
+</html>
+
+<script>
+    
+</script>
+
+<script>
+    
+
+    let vaccine_lot;
+    let line = [];
+    
+    let i;
+    
+
+    function register() {
+        event.preventDefault();
+        let name = document.getElementById("name").value
+        let age = document.getElementById("age").value
+        let vac = document.getElementById("vaccine");
+        let que = document.getElementById("que");
+        
+
+        if(age >= 60){
+            line.unshift(name)
+        }
+        else{
+            line.push(name)
+        }
+        console.log(line)
+    
+        let message = `${name} have been registered`;
+        alert(message);
+
+        i=0;
+        vaccine_lot=10
+        let id;
+        let myPromise = new Promise(function (resolve, reject) {
+            id=setInterval(() => {
+                
+                if (line[i] == name) {
+                    vaccine_lot--;
+                    line.shift()
+                    
+                    resolve(alert(`${name}, come its your turn now.`))
+                    
+                }else if(vaccine_lot <= 0 || line.length >vaccine_lot){
+                    clearTimeout(id)
+                    reject("come tommorow")
+                }
+                i++;
+                
+            }, 5000);
+        })
+        myPromise.then((resolve) => {
+            vac.innerHTML=null;
+            que.innerHTML=null;
+            resolve;
+            vac.append(`vaccine-left : ${vaccine_lot}`)
+            que.append(`queue : ${line.length}`)
+           
+
+            
+        }).catch((err) => {
+            alert(`${err}`)
+        })
+    }
+
+ 
+
+
+
+</script>

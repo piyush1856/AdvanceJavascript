@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="Currtime">Choose Time</h1>
+    <input type="time" id="time">
+    <button onclick="submit()" >Submit</button>
+
+</body>
+</html>
+
+<script>
+    let id;
+    let submit = () => {
+        let time = document.getElementById("time").value;
+        let [h,m] = time.split(":");
+       id = setInterval(() => {
+            let current = new Date();
+            let hours = current.getHours();
+            let mins = current.getMinutes();
+            let sec = current.getSeconds();
+
+            document.getElementById("Currtime").innerText = `${hours}:${mins}:${sec}`
+
+            if(h == hours && m == mins){
+                
+                let mp3 = "https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3";   // location or link
+                new Audio(mp3).play();
+                alert("time to work");
+                clearInterval(id);
+            }
+        },1000);
+    }
+</script>

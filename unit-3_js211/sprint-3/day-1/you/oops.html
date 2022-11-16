@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+// 1. Inheritance : Borrow property fron parent
+    class Vechicle{
+        constructor(name, brand){
+            this.wheels =4;
+            this.name = name;
+            this.brand = brand;
+        }
+    
+        run(){
+            console.log(`${this.name} vechicle is running`)
+        }
+    } 
+
+    class Car extends Vechicle{
+        constructor(name,brand){
+            super(name,brand);
+        }
+    }
+
+    let car = new Car("Xc90", "Volvo")
+    car.run()
+
+    //multiple inheritance - not possible because of diamond problem
+    //multilevel inheritance
+
+    class Bus extends Car{
+        constructor(){
+            super(name,brand)
+        }
+    }
+
+
+
+
+// 2. Encapsulation : private variable using # before variable
+    class Student{
+        #score
+        constructor(){
+            this.name = "Avinish";
+            this.batch = "JS211";
+            this.#score = 8;
+        }
+        get avinishScore(){
+            return this.#score
+        }
+        set avinishScore(newScore){
+            this.#score = newScore;
+        }
+    }
+    let s = new Student()
+    console.log(s.score)
+    console.log(s.avinishScore)
+
+    //read and write
+
+
+
+
+// 3. Abstraction : hiding complexity(how things are implemented)
+    class User{
+        constructor(name,email){
+            this._name = name;
+            this._email = email;
+        }
+
+        learnSkill(skill){
+            console.log(`${this._name} is learning ${skill}`);
+        }
+    }
+
+    let user1= new User("Nidhi", "abc@gmail.com");
+    user1.learnSkill("JS");
+    console.log(user1._name);
+    //it is a way of hiding the implementation details and showing only the functiobality to user
+
+
+
+
+// 4. Polymorphism : poly means many/multiple
+    class Luxurycar{
+        constructor(){
+            this.name = "four Wheeler";
+        }
+        run(){
+            console.log(`${this.name} is running`)
+        }
+    }
+
+    class Auto extends Luxurycar{
+        constructor(){
+            super()
+            this.name = "auto"
+        }
+        run(){
+            console.log("I will not run")
+        }
+    }
+
+    let a = new Auto();
+    a.run()
+    // if parent and child ( like run() )have same method then child will run his own method
+     
+</script>
